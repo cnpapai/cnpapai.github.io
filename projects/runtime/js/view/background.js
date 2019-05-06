@@ -19,9 +19,16 @@ var background = function(window) {
         // container which will be returned
         var background;
 
-        // ANIMATION VARIABLES HERE:
-        var tree;
-        var buildings = [];
+        // Image VARIABLES HERE:
+        var galaxy,
+            star,
+            satellite,
+            planet,
+            alien,
+            blackHole,
+            planetRing;
+
+        var spaceships = [];
         // add objects for display inb ackground
         // called at the start of game and whenever the page is resized
         function render() {
@@ -36,7 +43,7 @@ var background = function(window) {
             // this fills the background with a obnoxious yellow
             // you should modify this to suit your game
             var backgroundFill = draw.rect(canvasWidth, canvasHeight, 'pink');
-            background.addChild(backgroundFill);
+            // background.addChild(backgroundFill);
 
             // TODO: 3 - Add a moon and starfield
             var circle;
@@ -48,21 +55,49 @@ var background = function(window) {
             }
 
             // TODO: 5 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
-            var buildingHeight = 300;
-            var building;
+            var spaceshipHeight = 300;
+            var spaceship;
             for (var i = 0; i < 5; ++i) {
-                building = draw.rect(75, buildingHeight, 'LightGray', 'Black', 1);
-                building.x = 200 * i;
-                building.y = groundY - buildingHeight;
-                background.addChild(building);
-                buildings.push(building);
+                spaceship = draw.rect(75, spaceshipHeight, 'LightGray', 'Black', 1);
+                spaceship.x = 200 * i;
+                spaceship.y = groundY - spaceshipHeight;
+                background.addChild(spaceship);
+                spaceships.push(spaceship);
             }
 
-            // TODO 4: Part 1 - Add a tree
-            tree = draw.bitmap('img/tree.png');
-            tree.x = 180;
-            tree.y = 200;
-            background.addChild(tree);
+            /////// rewards
+
+
+
+            // add a planet
+            planet = draw.bitmap('img/rewards/planet.png');
+            planet.x = 400;
+            planet.y = 100;
+            background.addChild(planet);
+            
+            // add satellite
+            satellite = draw.bitmap('img/rewards/satellite.png');
+            satellite.x = 1000;
+            satellite.y = 300;
+            background.addChild(satellite);
+            
+            // add star
+            star = draw.bitmap('img/rewards/star.png');
+            star.x = 700;
+            star.y = 200;
+            background.addChild(star);
+            
+            
+            // TODO 4: Part 1 - Add a galaxy
+            galaxy = draw.bitmap('img/rewards/galaxy.png');
+            galaxy.x = 180;
+            galaxy.y = 200;
+            background.addChild(galaxy);
+            
+            //  obstacles
+            // add an alien
+            // add a black hole
+            // add a planet ring
         }
 
         // Perform background animation
@@ -74,16 +109,16 @@ var background = function(window) {
             var groundY = ground.y;
 
             // TODO 4: Part 2 - Move the tree!
-            tree.x = tree.x + 1;
-            if (tree.x < -200) {
-                tree.x = canvasWidth;
-            }
+            // tree.x = tree.x + 1;
+            // if (tree.x < -200) {
+            //     tree.x = canvasWidth;
+            // }
 
             // TODO 5: Part 2 - Parallax
-      for (var i = 2; i < buildings.length; i++) {
-      buildings[i].x = buildings[i].x + 1;
-          
-      }
+            for (var i = 0; i < spaceships.length; i++) {
+                spaceships[i].x = spaceships[i].x + 1;
+
+            }
 
         }
 
